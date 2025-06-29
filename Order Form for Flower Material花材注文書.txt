@@ -497,10 +497,10 @@ export const translations = {
   ja: {
     title: "第106回草月いけばな展",
     subtitle: "花材注文書",
-    contact: "宛先：DeBloemenwinkel ブルームウィンクル",
+    contact: "宛先：DeBloemenwinkel ブルームンウィンクル",
     email: "E-mail: deblwinkel@gmail.com",
     deadline: "下記の情報を詳細に記入し、スケッチと共に9月18日（木）までに上記メールアドレスへ提出してください。",
-    payment: "請求金額は花屋「Bloomwinkel」よりお知らせいたします。クレジットカードでお支払いいただけます。",
+    payment: "請求金額は花屋「DeBloemenwinkel」よりお知らせいたします。クレジットカードでお支払いいただけます。",
     personalInfo: "個人情報",
     orderDetails: "注文詳細",
     name: "お名前",
