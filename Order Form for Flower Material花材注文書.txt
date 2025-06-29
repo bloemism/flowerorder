@@ -951,45 +951,59 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./dist
 ```
+## .github/workflows/deploy.yml
 
-### 2. GitHubリポジトリでの設定
+```yaml
+name: Deploy to GitHub Pages
 
-1. GitHubリポジトリページに移動
-2. **Settings** タブをクリック
-3. 左サイドバーの **Pages** をクリック
-4. **Source** で **GitHub Actions** を選択
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
 
-### 3. 手動デプロイの方法
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
-ローカルから手動でデプロイする場合：
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
-```bash
-# 依存関係をインストール
-npm install
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build
+        run: npm run build
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
 
-# ビルド＆デプロイ
-npm run deploy
-```
-
-## アクセスURL
-
-デプロイ後、以下のURLでアクセスできます：
-**https://bloemism.github.io/flowerorder/**
-
-## 注意事項
-
-- 初回デプロイ後、反映まで数分かかる場合があります
-- mainブランチにpushするたびに自動デプロイされます
-- カスタムドメインを使用する場合は、CNAMEファイルを追加してください
-
-## トラブルシューティング
-
-### デプロイが失敗する場合
-1. package.jsonの設定を確認
-2. vite.config.tsのbase設定を確認
-3. GitHub Actionsのログを確認
-
-### ページが表示されない場合
-1. GitHub PagesのSettings確認
-2. URLが正しいか確認（https://bloemism.github.io/flowerorder/）
-3. ブラウザのキャッシュをクリア
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
