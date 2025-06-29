@@ -907,3 +907,89 @@ export default tseslint.config(
 ---
 
 **注意**: このファイルをデスクトップに保存して、必要な部分をコピー＆ペーストしてプロジェクトを作成してください。
+# GitHub Pagesデプロイガイド
+
+## 自動デプロイの設定方法
+
+### 1. GitHub Actionsを使用した自動デプロイ
+
+`.github/workflows/deploy.yml` ファイルを作成してください：
+
+```yaml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build
+      run: npm run build
+      
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
+```
+
+### 2. GitHubリポジトリでの設定
+
+1. GitHubリポジトリページに移動
+2. **Settings** タブをクリック
+3. 左サイドバーの **Pages** をクリック
+4. **Source** で **GitHub Actions** を選択
+
+### 3. 手動デプロイの方法
+
+ローカルから手動でデプロイする場合：
+
+```bash
+# 依存関係をインストール
+npm install
+
+# ビルド＆デプロイ
+npm run deploy
+```
+
+## アクセスURL
+
+デプロイ後、以下のURLでアクセスできます：
+**https://bloemism.github.io/flowerorder/**
+
+## 注意事項
+
+- 初回デプロイ後、反映まで数分かかる場合があります
+- mainブランチにpushするたびに自動デプロイされます
+- カスタムドメインを使用する場合は、CNAMEファイルを追加してください
+
+## トラブルシューティング
+
+### デプロイが失敗する場合
+1. package.jsonの設定を確認
+2. vite.config.tsのbase設定を確認
+3. GitHub Actionsのログを確認
+
+### ページが表示されない場合
+1. GitHub PagesのSettings確認
+2. URLが正しいか確認（https://bloemism.github.io/flowerorder/）
+3. ブラウザのキャッシュをクリア
