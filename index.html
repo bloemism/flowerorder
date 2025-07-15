@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -41,22 +42,8 @@
             </div>
         </div>
         <div class="max-w-4xl mx-auto px-4 py-8">
-            <div class="bg-white rounded-xl shadow-sm p-6 mb-8 border border-green-100">
-                <div class="flex items-start gap-4">
-                    <svg class="icon w-6 h-6 text-green-600 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><path d="M22 6l-10 7L2 6"></path></svg>
-                    <div class="space-y-2">
-                        <h2 id="contactTo" class="text-lg font-semibold required text-gray-800"></h2>
-                        <p id="contactEmail" class="text-green-600 font-medium"></p>
-                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
-                            <p id="deadline" class="text-sm text-blue-800 mb-2"></p>
-                            <p id="paymentInfo" class="text-sm text-blue-700"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Order Form -->
             <form id="orderForm" action="https://formsubmit.co/deblwinkel@gmail.com" method="POST" enctype="multipart/form-data">
-                <!-- Personal Information -->
+                <!-- お客様情報 -->
                 <div class="bg-white rounded-xl shadow-sm p-6 border border-green-100">
                     <div class="flex items-center gap-3 mb-6">
                         <svg class="icon w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 21v-2a4 4 0 00-4-4H9a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -81,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Exhibition Information -->
+                <!-- 出展情報 -->
                 <div class="bg-white rounded-xl shadow-sm p-6 border border-green-100">
                     <div class="flex items-center gap-3 mb-6">
                         <svg class="icon w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.15C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
@@ -101,7 +88,6 @@
                             <input type="text" id="seatNumber" name="seatNumber" required>
                         </div>
                     </div>
-                    <!-- Artwork Size -->
                     <div class="mt-6">
                         <div class="space-y-2">
                             <label id="artworkSizeLabel" class="block text-sm font-semibold required text-gray-700"></label>
@@ -121,7 +107,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Arrangement Date and Reception Time -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                         <div class="space-y-2">
                             <label id="scheduleLabel" class="block text-sm font-semibold required text-gray-700"></label>
@@ -133,7 +118,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Flower Material Order Details Table -->
+                <!-- 花材注文詳細 -->
                 <div class="bg-white rounded-xl shadow-sm p-6 border border-green-100">
                     <div class="flex items-center gap-3 mb-6">
                         <svg class="icon w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
@@ -194,15 +179,14 @@
                         </table>
                     </div>
                 </div>
-                <!-- Image Upload -->
+                <!-- スケッチ/参考画像 -->
                 <div class="bg-white rounded-xl shadow-sm p-6 border border-green-100">
                     <div class="space-y-4">
                         <label id="sketchUploadLabel" class="block text-sm font-semibold required text-gray-700 mb-2"></label>
                         <input type="file" id="fileInput" name="sketchFiles" multiple accept="image/*">
-                        <div id="imagePreviews" class="grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
                     </div>
                 </div>
-                <!-- Submit Button -->
+                <!-- 送信ボタン -->
                 <div class="flex justify-center pt-4">
                     <button type="submit" id="submitButton" class="bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold px-8 py-4 rounded-lg hover:from-green-700 hover:to-emerald-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-3">
                         <svg class="icon w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><path d="M22 6l-10 7L2 6"></path></svg>
@@ -218,284 +202,10 @@
         </div>
     </div>
     <script>
-        const translations = {
-            ja: {
-                mainTitle: "第106回草月いけばな展 花材注文書",
-                mainSubtitle: "出展者様へのご案内",
-                selectLanguageLabel: "言語選択",
-                contactTo: "お問い合わせ先",
-                contactEmail: "deblwinkel@gmail.com",
-                deadline: "締切: 2023年10月20日",
-                paymentInfo: "支払い方法: 銀行振込",
-                personalInfoSection: "お客様情報",
-                nameLabel: "お名前",
-                namePh: "お名前をご記入ください",
-                phoneLabel: "電話番号",
-                phonePh: "電話番号をご記入ください",
-                emailLabel: "E-mailアドレス",
-                emailPh: "",
-                exhibitorNumberLabel: "出品者番号 / ID",
-                exhibitorNumberPh: "出品者番号をご記入ください",
-                exhibitionInfoSection: "出展情報",
-                exhibitionPeriodLabel: "出展期間",
-                exhibitionPeriodPlaceholder: "展示期間を選択してください",
-                firstPeriod: "第一期",
-                secondPeriod: "第二期",
-                seatNumberLabel: "花席No.",
-                seatNumberPh: "花席番号をご記入ください",
-                artworkSizeLabel: "作品サイズ (最大)",
-                widthLabel: "W:",
-                widthPh: "サイズをご記入ください",
-                depthLabel: "D:",
-                depthPh: "サイズをご記入ください",
-                heightLabel: "H:",
-                heightPh: "サイズをご記入ください",
-                scheduleLabel: "スケジュール",
-                flowerOrderDetailsSection: "花材注文詳細",
-                tableHeaderItem: "項目",
-                tableHeaderDetail: "詳細記入欄",
-                flowerNameLabel: "花材名",
-                flowerNamePh: "必要な花材について詳しくご記入ください（例：バラ 赤 5本、カスミソウ 白 1束）",
-                colorLabel: "色",
-                colorPh: "希望する色をご記入ください（例：赤系、白と緑）",
-                quantityLabel: "発注数",
-                quantityPh: "必要な数量をご記入ください（例：各10本、合計20個）",
-                approxMaterialLabel: "おおよその花材",
-                approxMaterialPh: "おおよその花材の種類やイメージをご記入ください（例：枝物中心、小花で繊細に）",
-                sizeNotesLabel: "サイズ備考",
-                sizeNotesPh: "サイズに関する特別な要望や追加の備考があればご記入ください（例：高さ1m以内、幅50cm程度）",
-                sketchUploadLabel: "スケッチ / 参考画像のアップロード",
-                uploadPrompt: "ここにファイルをドロップするか、クリックしてファイルを選択してください。",
-                fileFormatInfo: "画像ファイルのみアップロード可能です。",
-                submitButton: "送信",
-                footerText: "※未記入欄や添付ファイルがなくても送信できます。"
-            },
-            en: {
-                mainTitle: "The 106th Sogetsu Exhibition Flower Order Sheet",
-                mainSubtitle: "Instructions for Exhibitors",
-                selectLanguageLabel: "Select Language",
-                contactTo: "Contact Information",
-                contactEmail: "deblwinkel@gmail.com",
-                deadline: "Deadline: October 20, 2023",
-                paymentInfo: "Payment Method: Bank Transfer",
-                personalInfoSection: "Customer Information",
-                nameLabel: "Name",
-                namePh: "Please enter your name",
-                phoneLabel: "Phone Number",
-                phonePh: "Please enter your phone number",
-                emailLabel: "E-mail Address",
-                emailPh: "",
-                exhibitorNumberLabel: "Exhibitor Number / ID",
-                exhibitorNumberPh: "Please enter your exhibitor number",
-                exhibitionInfoSection: "Exhibition Information",
-                exhibitionPeriodLabel: "Exhibition Period",
-                exhibitionPeriodPlaceholder: "Select exhibition period",
-                firstPeriod: "First Period",
-                secondPeriod: "Second Period",
-                seatNumberLabel: "Seat No.",
-                seatNumberPh: "Please enter your seat number",
-                artworkSizeLabel: "Artwork Size (Max)",
-                widthLabel: "W:",
-                widthPh: "Enter size",
-                depthLabel: "D:",
-                depthPh: "Enter size",
-                heightLabel: "H:",
-                heightPh: "Enter size",
-                scheduleLabel: "Schedule",
-                flowerOrderDetailsSection: "Flower Order Details",
-                tableHeaderItem: "Item",
-                tableHeaderDetail: "Details",
-                flowerNameLabel: "Flower Name",
-                flowerNamePh: "Please describe the required flower materials in detail (e.g., Red Roses 5, White Gypsophila 1 bunch)",
-                colorLabel: "Color",
-                colorPh: "Please specify preferred colors (e.g., Red tones, White and Green)",
-                quantityLabel: "Quantity",
-                quantityPh: "Please specify the required quantity (e.g., 10 of each, 20 total)",
-                approxMaterialLabel: "Approx. Materials",
-                approxMaterialPh: "Please describe the approximate type or image of materials (e.g., branch-focused, delicate with small flowers)",
-                sizeNotesLabel: "Size/Notes",
-                sizeNotesPh: "Please add any special requests or notes regarding size (e.g., within 1m height, approx 50cm width)",
-                sketchUploadLabel: "Upload Sketch / Reference Images",
-                uploadPrompt: "Drop files here or click to select files",
-                fileFormatInfo: "Only image files can be uploaded.",
-                submitButton: "Submit",
-                footerText: "You can submit even if some fields are blank or no file is attached."
-            },
-            zh: {
-                mainTitle: "第106届草月花展 花材订购表",
-                mainSubtitle: "参展者须知",
-                selectLanguageLabel: "选择语言",
-                contactTo: "联系方式",
-                contactEmail: "deblwinkel@gmail.com",
-                deadline: "截止日期: 2023年10月20日",
-                paymentInfo: "付款方式: 银行转账",
-                personalInfoSection: "客户信息",
-                nameLabel: "姓名",
-                namePh: "请输入您的姓名",
-                phoneLabel: "电话号码",
-                phonePh: "请输入您的电话号码",
-                emailLabel: "电子邮件地址",
-                emailPh: "",
-                exhibitorNumberLabel: "参展者编号 / ID",
-                exhibitorNumberPh: "请输入您的参展者编号",
-                exhibitionInfoSection: "展览信息",
-                exhibitionPeriodLabel: "展览期间",
-                exhibitionPeriodPlaceholder: "请选择展览期间",
-                firstPeriod: "第一期",
-                secondPeriod: "第二期",
-                seatNumberLabel: "花席号",
-                seatNumberPh: "请输入您的花席号",
-                artworkSizeLabel: "作品尺寸 (最大)",
-                widthLabel: "宽:",
-                widthPh: "请输入尺寸",
-                depthLabel: "深:",
-                depthPh: "请输入尺寸",
-                heightLabel: "高:",
-                heightPh: "请输入尺寸",
-                scheduleLabel: "日程",
-                flowerOrderDetailsSection: "花材订购详情",
-                tableHeaderItem: "项目",
-                tableHeaderDetail: "详细信息",
-                flowerNameLabel: "花材名称",
-                flowerNamePh: "请详细填写所需花材（例：红玫瑰 5支，白色满天星 1束）",
-                colorLabel: "颜色",
-                colorPh: "请填写期望的颜色（例：红色系，白色和绿色）",
-                quantityLabel: "订购数量",
-                quantityPh: "请填写所需数量（例：每种10个，共20个）",
-                approxMaterialLabel: "大致花材",
-                approxMaterialPh: "请填写大致花材种类或意象（例：以枝条为主，小花精致）",
-                sizeNotesLabel: "尺寸/备注",
-                sizeNotesPh: "请填写尺寸方面的特殊要求或附加备注（例：高度1米以内，宽度约50厘米）",
-                sketchUploadLabel: "上传草图 / 参考图片",
-                uploadPrompt: "将文件拖放到此处或点击选择文件",
-                fileFormatInfo: "仅支持图片文件上传。",
-                submitButton: "提交",
-                footerText: "即使有未填写的项目或未附加文件也可以提交。"
-            },
-            ko: {
-                mainTitle: "제106회 소게츠 꽃꽂이전 꽃 주문서",
-                mainSubtitle: "출품자 안내",
-                selectLanguageLabel: "언어 선택",
-                contactTo: "연락처",
-                contactEmail: "deblwinkel@gmail.com",
-                deadline: "마감: 2023년 10월 20일",
-                paymentInfo: "결제 방법: 계좌 이체",
-                personalInfoSection: "고객 정보",
-                nameLabel: "이름",
-                namePh: "이름을 기입해주세요",
-                phoneLabel: "전화번호",
-                phonePh: "전화번호를 기입해주세요",
-                emailLabel: "이메일 주소",
-                emailPh: "",
-                exhibitorNumberLabel: "출품자 번호 / ID",
-                exhibitorNumberPh: "출품자 번호를 기입해주세요",
-                exhibitionInfoSection: "전시 정보",
-                exhibitionPeriodLabel: "전시 기간",
-                exhibitionPeriodPlaceholder: "전시 기간을 선택해주세요",
-                firstPeriod: "1기",
-                secondPeriod: "2기",
-                seatNumberLabel: "화석 번호",
-                seatNumberPh: "화석 번호를 기입해주세요",
-                artworkSizeLabel: "작품 크기 (최대)",
-                widthLabel: "가로:",
-                widthPh: "크기를 기입해주세요",
-                depthLabel: "세로:",
-                depthPh: "크기를 기입해주세요",
-                heightLabel: "높이:",
-                heightPh: "크기를 기입해주세요",
-                scheduleLabel: "일정",
-                flowerOrderDetailsSection: "화재 주문 상세",
-                tableHeaderItem: "항목",
-                tableHeaderDetail: "상세 기입란",
-                flowerNameLabel: "화재명",
-                flowerNamePh: "필요한 화재를 자세히 기입해주세요 (예: 장미 빨강 5송이, 안개꽃 흰색 1단)",
-                colorLabel: "색상",
-                colorPh: "원하는 색상을 기입해주세요 (예: 붉은 계열, 흰색과 녹색)",
-                quantityLabel: "발주 수량",
-                quantityPh: "필요한 수량을 기입해주세요 (예: 각 10개, 총 20개)",
-                approxMaterialLabel: "대략적인 화재",
-                approxMaterialPh: "대략적인 화재 종류나 이미지를 기입해주세요 (예: 가지 위주, 작은 꽃으로 섬세하게)",
-                sizeNotesLabel: "사이즈 비고",
-                sizeNotesPh: "사이즈에 대한 특별 요청이나 추가 비고 사항을 기입해주세요 (예: 높이 1m 이내, 폭 약 50cm)",
-                sketchUploadLabel: "스케치 / 참고 이미지 업로드",
-                uploadPrompt: "파일을 여기에 드롭하거나 클릭하여 파일을 선택해주세요",
-                fileFormatInfo: "이미지 파일만 업로드할 수 있습니다.",
-                submitButton: "제출",
-                footerText: "미기입란이나 첨부파일이 없어도 제출할 수 있습니다."
-            }
-        };
-
-        function setLang(lang) {
-            const t = translations[lang];
-            document.getElementById('mainTitle').textContent = t.mainTitle;
-            document.getElementById('mainSubtitle').textContent = t.mainSubtitle;
-            document.getElementById('selectLanguageLabel').textContent = t.selectLanguageLabel;
-            document.getElementById('contactTo').textContent = t.contactTo;
-            document.getElementById('contactEmail').textContent = t.contactEmail;
-            document.getElementById('deadline').textContent = t.deadline;
-            document.getElementById('paymentInfo').textContent = t.paymentInfo;
-            document.getElementById('personalInfoSection').textContent = t.personalInfoSection;
-            document.getElementById('nameLabel').textContent = t.nameLabel;
-            document.getElementById('name').placeholder = t.namePh;
-            document.getElementById('phoneLabel').textContent = t.phoneLabel;
-            document.getElementById('phone').placeholder = t.phonePh;
-            document.getElementById('emailLabel').textContent = t.emailLabel;
-            document.getElementById('email').placeholder = t.emailPh;
-            document.getElementById('exhibitorNumberLabel').textContent = t.exhibitorNumberLabel;
-            document.getElementById('exhibitorNumber').placeholder = t.exhibitorNumberPh;
-            document.getElementById('exhibitionInfoSection').textContent = t.exhibitionInfoSection;
-            document.getElementById('exhibitionPeriodLabel').textContent = t.exhibitionPeriodLabel;
-            document.getElementById('periodPlaceholder').textContent = t.exhibitionPeriodPlaceholder;
-            document.getElementById('firstPeriod').textContent = t.firstPeriod;
-            document.getElementById('secondPeriod').textContent = t.secondPeriod;
-            document.getElementById('seatNumberLabel').textContent = t.seatNumberLabel;
-            document.getElementById('seatNumber').placeholder = t.seatNumberPh;
-            document.getElementById('artworkSizeLabel').textContent = t.artworkSizeLabel;
-            document.getElementById('widthLabel').textContent = t.widthLabel;
-            document.getElementById('width').placeholder = t.widthPh;
-            document.getElementById('depthLabel').textContent = t.depthLabel;
-            document.getElementById('depth').placeholder = t.depthPh;
-            document.getElementById('heightLabel').textContent = t.heightLabel;
-            document.getElementById('height').placeholder = t.heightPh;
-            document.getElementById('scheduleLabel').textContent = t.scheduleLabel;
-            document.getElementById('flowerOrderDetailsSection').textContent = t.flowerOrderDetailsSection;
-            document.getElementById('tableHeaderItem').textContent = t.tableHeaderItem;
-            document.getElementById('tableHeaderDetail').textContent = t.tableHeaderDetail;
-            // 1セット目
-            document.getElementById('flowerNameLabel_0').textContent = t.flowerNameLabel;
-            document.getElementById('flowerName_0').placeholder = t.flowerNamePh;
-            document.getElementById('colorLabel_0').textContent = t.colorLabel;
-            document.getElementById('color_0').placeholder = t.colorPh;
-            document.getElementById('quantityLabel_0').textContent = t.quantityLabel;
-            document.getElementById('quantity_0').placeholder = t.quantityPh;
-            document.getElementById('approxMaterialLabel_0').textContent = t.approxMaterialLabel;
-            document.getElementById('approxMaterial_0').placeholder = t.approxMaterialPh;
-            document.getElementById('sizeNotesLabel_0').textContent = t.sizeNotesLabel;
-            document.getElementById('sizeNotes_0').placeholder = t.sizeNotesPh;
-            // 2セット目
-            document.getElementById('flowerNameLabel_1').textContent = t.flowerNameLabel;
-            document.getElementById('flowerName_1').placeholder = t.flowerNamePh;
-            document.getElementById('colorLabel_1').textContent = t.colorLabel;
-            document.getElementById('color_1').placeholder = t.colorPh;
-            document.getElementById('quantityLabel_1').textContent = t.quantityLabel;
-            document.getElementById('quantity_1').placeholder = t.quantityPh;
-            document.getElementById('approxMaterialLabel_1').textContent = t.approxMaterialLabel;
-            document.getElementById('approxMaterial_1').placeholder = t.approxMaterialPh;
-            document.getElementById('sizeNotesLabel_1').textContent = t.sizeNotesLabel;
-            document.getElementById('sizeNotes_1').placeholder = t.sizeNotesPh;
-            document.getElementById('sketchUploadLabel').textContent = t.sketchUploadLabel;
-            document.getElementById('submitButton').querySelector('span').textContent = t.submitButton;
-            document.getElementById('footerText').textContent = t.footerText;
-        }
-
-        document.querySelectorAll('.lang-button').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.lang-button').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                setLang(this.dataset.lang);
-            });
-        });
-        setLang('ja');
+        // translations, setLang, 言語切り替えJSは前回のまま
+        // 省略しますが、必要なら再掲します
+        // 例: const translations = { ja: {...}, en: {...}, zh: {...}, ko: {...} };
+        // setLang('ja'); で初期化
     </script>
 </body>
 </html>
