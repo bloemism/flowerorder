@@ -116,12 +116,239 @@
     <p class="text-xs text-gray-500 mt-4" id="note"></p>
   </div>
   <script>
-    // translations（前回のまま）をここに貼り付けてください
-    // ...（省略）...
-    // 例: const translations = { ja: {...}, en: {...}, zh: {...}, ko: {...} };
-    // setLang関数も同様に
-    // ...（省略）...
-    // 言語切り替えボタン
+    const translations = {
+      ja: {
+        title: "The 106th Sogetsu Exhibition Flower Order Sheet
+第106回草月いけばな展 花材注文書",
+        customerInfo: "お客様情報",
+        nameLabel: "お名前",
+        namePh: "お名前をご記入ください",
+        phoneLabel: "電話番号",
+        phonePh: "電話番号をご記入ください",
+        emailLabel: "E-mailアドレス",
+        emailPh: "",
+        idLabel: "出品者番号 / ID",
+        idPh: "出品者番号をご記入ください",
+        exhibitionInfo: "出展情報",
+        periodLabel: "出展期間",
+        periodPlaceholder: "展示期間を選択してください",
+        firstPeriod: "第一期",
+        secondPeriod: "第二期",
+        seatLabel: "花席No.",
+        seatPh: "花席番号をご記入ください",
+        sizeLabel: "作品サイズ (最大)",
+        wLabel: "W:",
+        wPh: "サイズをご記入ください",
+        dLabel: "D:",
+        dPh: "サイズをご記入ください",
+        hLabel: "H:",
+        hPh: "サイズをご記入ください",
+        scheduleLabel: "スケジュール",
+        orderDetail: "花材注文詳細",
+        itemHeader: "項目",
+        detailHeader: "詳細記入欄",
+        flowerNameLabel: "花材名",
+        flowerNamePh: "必要な花材について詳しくご記入ください（例：バラ 赤 5本、カスミソウ 白 1束）",
+        colorLabel: "色",
+        colorPh: "希望する色をご記入ください（例：赤系、白と緑）",
+        quantityLabel: "発注数",
+        quantityPh: "必要な数量をご記入ください（例：各10本、合計20個）",
+        approxLabel: "おおよその花材",
+        approxPh: "おおよその花材の種類やイメージをご記入ください（例：枝物中心、小花で繊細に）",
+        sizeNotesLabel: "サイズ備考",
+        sizeNotesPh: "サイズに関する特別な要望や追加の備考があればご記入ください（例：高さ1m以内、幅50cm程度）",
+        fileLabel: "スケッチ / 参考画像のアップロード",
+        submitBtn: "送信",
+        note: "※未記入欄や添付ファイルがなくても送信できます。"
+      },
+      en: {
+        title: "The 106th Sogetsu Exhibition Flower Order Sheet",
+        customerInfo: "Customer Information",
+        nameLabel: "Name",
+        namePh: "Please enter your name",
+        phoneLabel: "Phone Number",
+        phonePh: "Please enter your phone number",
+        emailLabel: "E-mail Address",
+        emailPh: "",
+        idLabel: "Exhibitor Number / ID",
+        idPh: "Please enter your exhibitor number",
+        exhibitionInfo: "Exhibition Information",
+        periodLabel: "Exhibition Period",
+        periodPlaceholder: "Select exhibition period",
+        firstPeriod: "First Period",
+        secondPeriod: "Second Period",
+        seatLabel: "Seat No.",
+        seatPh: "Please enter your seat number",
+        sizeLabel: "Artwork Size (Max)",
+        wLabel: "W:",
+        wPh: "Enter size",
+        dLabel: "D:",
+        dPh: "Enter size",
+        hLabel: "H:",
+        hPh: "Enter size",
+        scheduleLabel: "Schedule",
+        orderDetail: "Flower Order Details",
+        itemHeader: "Item",
+        detailHeader: "Details",
+        flowerNameLabel: "Flower Name",
+        flowerNamePh: "Please describe the required flower materials in detail (e.g., Red Roses 5, White Gypsophila 1 bunch)",
+        colorLabel: "Color",
+        colorPh: "Please specify preferred colors (e.g., Red tones, White and Green)",
+        quantityLabel: "Quantity",
+        quantityPh: "Please specify the required quantity (e.g., 10 of each, 20 total)",
+        approxLabel: "Approx. Materials",
+        approxPh: "Please describe the approximate type or image of materials (e.g., branch-focused, delicate with small flowers)",
+        sizeNotesLabel: "Size/Notes",
+        sizeNotesPh: "Please add any special requests or notes regarding size (e.g., within 1m height, approx 50cm width)",
+        fileLabel: "Upload Sketch / Reference Images",
+        submitBtn: "Submit",
+        note: "You can submit even if some fields are blank or no file is attached."
+      },
+      zh: {
+        title: "第106届草月花展 花材订购表",
+        customerInfo: "客户信息",
+        nameLabel: "姓名",
+        namePh: "请输入您的姓名",
+        phoneLabel: "电话号码",
+        phonePh: "请输入您的电话号码",
+        emailLabel: "电子邮件地址",
+        emailPh: "",
+        idLabel: "参展者编号 / ID",
+        idPh: "请输入您的参展者编号",
+        exhibitionInfo: "展览信息",
+        periodLabel: "展览期间",
+        periodPlaceholder: "请选择展览期间",
+        firstPeriod: "第一期",
+        secondPeriod: "第二期",
+        seatLabel: "花席号",
+        seatPh: "请输入您的花席号",
+        sizeLabel: "作品尺寸 (最大)",
+        wLabel: "宽:",
+        wPh: "请输入尺寸",
+        dLabel: "深:",
+        dPh: "请输入尺寸",
+        hLabel: "高:",
+        hPh: "请输入尺寸",
+        scheduleLabel: "日程",
+        orderDetail: "花材订购详情",
+        itemHeader: "项目",
+        detailHeader: "详细信息",
+        flowerNameLabel: "花材名称",
+        flowerNamePh: "请详细填写所需花材（例：红玫瑰 5支，白色满天星 1束）",
+        colorLabel: "颜色",
+        colorPh: "请填写期望的颜色（例：红色系，白色和绿色）",
+        quantityLabel: "订购数量",
+        quantityPh: "请填写所需数量（例：每种10个，共20个）",
+        approxLabel: "大致花材",
+        approxPh: "请填写大致花材种类或意象（例：以枝条为主，小花精致）",
+        sizeNotesLabel: "尺寸/备注",
+        sizeNotesPh: "请填写尺寸方面的特殊要求或附加备注（例：高度1米以内，宽度约50厘米）",
+        fileLabel: "上传草图 / 参考图片",
+        submitBtn: "提交",
+        note: "即使有未填写的项目或未附加文件也可以提交。"
+      },
+      ko: {
+        title: "제106회 소게츠 꽃꽂이전 꽃 주문서",
+        customerInfo: "고객 정보",
+        nameLabel: "이름",
+        namePh: "이름을 기입해주세요",
+        phoneLabel: "전화번호",
+        phonePh: "전화번호를 기입해주세요",
+        emailLabel: "이메일 주소",
+        emailPh: "",
+        idLabel: "출품자 번호 / ID",
+        idPh: "출품자 번호를 기입해주세요",
+        exhibitionInfo: "전시 정보",
+        periodLabel: "출품 기간",
+        periodPlaceholder: "전시 기간을 선택해주세요",
+        firstPeriod: "1기",
+        secondPeriod: "2기",
+        seatLabel: "화석 번호",
+        seatPh: "화석 번호를 기입해주세요",
+        sizeLabel: "작품 크기 (최대)",
+        wLabel: "가로:",
+        wPh: "크기를 기입해주세요",
+        dLabel: "세로:",
+        dPh: "크기를 기입해주세요",
+        hLabel: "높이:",
+        hPh: "크기를 기입해주세요",
+        scheduleLabel: "일정",
+        orderDetail: "화재 주문 상세",
+        itemHeader: "항목",
+        detailHeader: "상세 기입란",
+        flowerNameLabel: "화재명",
+        flowerNamePh: "필요한 화재를 자세히 기입해주세요 (예: 장미 빨강 5송이, 안개꽃 흰색 1단)",
+        colorLabel: "색상",
+        colorPh: "원하는 색상을 기입해주세요 (예: 붉은 계열, 흰색과 녹색)",
+        quantityLabel: "발주 수량",
+        quantityPh: "필요한 수량을 기입해주세요 (예: 각 10개, 총 20개)",
+        approxLabel: "대략적인 화재",
+        approxPh: "대략적인 화재 종류나 이미지를 기입해주세요 (예: 가지 위주, 작은 꽃으로 섬세하게)",
+        sizeNotesLabel: "사이즈 비고",
+        sizeNotesPh: "사이즈에 대한 특별 요청이나 추가 비고 사항을 기입해주세요 (예: 높이 1m 이내, 폭 약 50cm)",
+        fileLabel: "스케치 / 참고 이미지 업로드",
+        submitBtn: "제출",
+        note: "미기입란이나 첨부파일이 없어도 제출할 수 있습니다."
+      }
+    };
+
+    function setLang(lang) {
+      const t = translations[lang];
+      document.getElementById('title').textContent = t.title;
+      document.getElementById('customerInfo').textContent = t.customerInfo;
+      document.getElementById('nameLabel').textContent = t.nameLabel;
+      document.getElementById('nameInput').placeholder = t.namePh;
+      document.getElementById('phoneLabel').textContent = t.phoneLabel;
+      document.getElementById('phoneInput').placeholder = t.phonePh;
+      document.getElementById('emailLabel').textContent = t.emailLabel;
+      document.getElementById('emailInput').placeholder = t.emailPh;
+      document.getElementById('idLabel').textContent = t.idLabel;
+      document.getElementById('idInput').placeholder = t.idPh;
+      document.getElementById('exhibitionInfo').textContent = t.exhibitionInfo;
+      document.getElementById('periodLabel').textContent = t.periodLabel;
+      document.getElementById('periodPlaceholder').textContent = t.periodPlaceholder;
+      document.getElementById('firstPeriod').textContent = t.firstPeriod;
+      document.getElementById('secondPeriod').textContent = t.secondPeriod;
+      document.getElementById('seatLabel').textContent = t.seatLabel;
+      document.getElementById('seatInput').placeholder = t.seatPh;
+      document.getElementById('sizeLabel').textContent = t.sizeLabel;
+      document.getElementById('wLabel').textContent = t.wLabel;
+      document.getElementById('wInput').placeholder = t.wPh;
+      document.getElementById('dLabel').textContent = t.dLabel;
+      document.getElementById('dInput').placeholder = t.dPh;
+      document.getElementById('hLabel').textContent = t.hLabel;
+      document.getElementById('hInput').placeholder = t.hPh;
+      document.getElementById('scheduleLabel').textContent = t.scheduleLabel;
+      document.getElementById('orderDetail').textContent = t.orderDetail;
+      document.getElementById('itemHeader').textContent = t.itemHeader;
+      document.getElementById('detailHeader').textContent = t.detailHeader;
+      // 1セット目
+      document.getElementById('flowerNameLabel1').textContent = t.flowerNameLabel;
+      document.getElementById('flowerNameInput1').placeholder = t.flowerNamePh;
+      document.getElementById('colorLabel1').textContent = t.colorLabel;
+      document.getElementById('colorInput1').placeholder = t.colorPh;
+      document.getElementById('quantityLabel1').textContent = t.quantityLabel;
+      document.getElementById('quantityInput1').placeholder = t.quantityPh;
+      document.getElementById('approxLabel1').textContent = t.approxLabel;
+      document.getElementById('approxInput1').placeholder = t.approxPh;
+      document.getElementById('sizeNotesLabel1').textContent = t.sizeNotesLabel;
+      document.getElementById('sizeNotesInput1').placeholder = t.sizeNotesPh;
+      // 2セット目
+      document.getElementById('flowerNameLabel2').textContent = t.flowerNameLabel;
+      document.getElementById('flowerNameInput2').placeholder = t.flowerNamePh;
+      document.getElementById('colorLabel2').textContent = t.colorLabel;
+      document.getElementById('colorInput2').placeholder = t.colorPh;
+      document.getElementById('quantityLabel2').textContent = t.quantityLabel;
+      document.getElementById('quantityInput2').placeholder = t.quantityPh;
+      document.getElementById('approxLabel2').textContent = t.approxLabel;
+      document.getElementById('approxInput2').placeholder = t.approxPh;
+      document.getElementById('sizeNotesLabel2').textContent = t.sizeNotesLabel;
+      document.getElementById('sizeNotesInput2').placeholder = t.sizeNotesPh;
+      document.getElementById('fileLabel').textContent = t.fileLabel;
+      document.getElementById('submitBtn').textContent = t.submitBtn;
+      document.getElementById('note').textContent = t.note;
+    }
+
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
