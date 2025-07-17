@@ -155,6 +155,61 @@
                   <td id="sizeNotesLabel_1" class="font-medium text-gray-700 align-top"></td>
                   <td><input type="text" id="sizeNotes_1" name="sizeNotes_1"></td>
                 </tr>
+                // --- Flower Material Dynamic Add ---
+let flowerMaterialCount = 2; // Start with 2 sets
+
+function createFlowerMaterialRow(idx, lang) {
+  const t = translations[lang];
+  return `
+    <tr>
+      <td id="flowerNameLabel_${idx}" class="font-medium text-gray-700 align-top">${t.flowerNameLabel}</td>
+      <td><input type="text" id="flowerName_${idx}" name="flowerName_${idx}"></td>
+    </tr>
+    <tr>
+      <td id="colorLabel_${idx}" class="font-medium text-gray-700 align-top">${t.colorLabel}</td>
+      <td><input type="text" id="color_${idx}" name="color_${idx}"></td>
+    </tr>
+    <tr>
+      <td id="quantityLabel_${idx}" class="font-medium text-gray-700 align-top">${t.quantityLabel}</td>
+      <td><input type="text" id="quantity_${idx}" name="quantity_${idx}"></td>
+    </tr>
+    <tr>
+      <td id="approxMaterialLabel_${idx}" class="font-medium text-gray-700 align-top">${t.approxMaterialLabel}</td>
+      <td><input type="text" id="approxMaterial_${idx}" name="approxMaterial_${idx}"></td>
+    </tr>
+    <tr>
+      <td id="sizeNotesLabel_${idx}" class="font-medium text-gray-700 align-top">${t.sizeNotesLabel}</td>
+      <td><input type="text" id="sizeNotes_${idx}" name="sizeNotes_${idx}"></td>
+    </tr>
+  `;
+}
+
+function renderFlowerMaterials(lang) {
+  const tbody = document.getElementById('flowerMaterialTbody');
+  tbody.innerHTML = '';
+  for (let i = 0; i < flowerMaterialCount; i++) {
+    tbody.innerHTML += createFlowerMaterialRow(i, lang);
+  }
+}
+
+document.getElementById('addFlowerBtn').addEventListener('click', function() {
+  flowerMaterialCount++;
+  renderFlowerMaterials(currentLang);
+});
+
+// --- Language switching support for dynamic rows ---
+let currentLang = 'ja';
+function setLang(lang) {
+  currentLang = lang;
+  // ... (your existing setLang code for other fields)
+  renderFlowerMaterials(lang);
+  // Update add button label
+  document.getElementById('addFlowerBtnLabel').textContent =
+    {ja:'花材を追加',en:'Add Flower',zh:'添加花材',ko:'꽃 추가'}[lang] || 'Add Flower';
+  // ... (rest of your setLang code)
+}
+
+// ... (rest of your script)
               </tbody>
             </table>
           </div>
