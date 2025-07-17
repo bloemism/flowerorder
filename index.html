@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The 106th Sogetsu Exhibition Flower Order Sheet</title>
+  <title>第106回草月いけばな展 花材注文書</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
@@ -13,6 +13,8 @@
     .lang-button.active { background-color: #10b981; color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
     .lang-button:not(.active):hover { background-color: #e2e8f0; }
     .icon { display: inline-block; width: 1em; height: 1em; stroke-width: 2; stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .clear-bg { background: #e0f2fe !important; }
+    .placeholder-center::placeholder { text-align: center; }
   </style>
 </head>
 <body class="p-4">
@@ -93,11 +95,11 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
             <div class="space-y-2">
               <label id="scheduleLabel" class="block text-sm font-semibold required text-gray-700"></label>
-              <input type="date" id="arrangementDate" name="arrangementDate" required>
+              <input type="date" id="arrangementDate" name="arrangementDate" required class="clear-bg placeholder-center" placeholder="Click here">
             </div>
             <div class="space-y-2">
-              <label class="block text-sm font-semibold required text-gray-700"></label>
-              <input type="time" id="arrangementTime" name="arrangementTime">
+              <label id="timeLabel" class="block text-sm font-semibold required text-gray-700"></label>
+              <input type="time" id="arrangementTime" name="arrangementTime" class="clear-bg placeholder-center" placeholder="Click here">
             </div>
           </div>
         </div>
@@ -112,106 +114,15 @@
                   <th id="tableHeaderDetail" class="text-sm font-semibold required text-gray-700 uppercase tracking-wider rounded-tr-lg w-2/3"></th>
                 </tr>
               </thead>
-              <tbody class="flower-material-set bg-white">
-                <tr>
-                  <td id="flowerNameLabel_0" class="font-medium text-gray-700 align-top"></td>
-                  <td><input type="text" id="flowerName_0" name="flowerName_0"></td>
-                </tr>
-                <tr>
-                  <td id="colorLabel_0" class="font-medium text-gray-700 align-top"></td>
-                  <td><input type="text" id="color_0" name="color_0"></td>
-                </tr>
-                <tr>
-                  <td id="quantityLabel_0" class="font-medium text-gray-700 align-top"></td>
-                  <td><input type="text" id="quantity_0" name="quantity_0"></td>
-                </tr>
-                <tr>
-                  <td id="approxMaterialLabel_0" class="font-medium text-gray-700 align-top"></td>
-                  <td><input type="text" id="approxMaterial_0" name="approxMaterial_0"></td>
-                </tr>
-                <tr>
-                  <td id="sizeNotesLabel_0" class="font-medium text-gray-700 align-top"></td>
-                  <td><input type="text" id="sizeNotes_0" name="sizeNotes_0"></td>
-                </tr>
-              </tbody>
-              <tbody class="flower-material-set bg-gray-50">
-                <tr>
-                  <td id="flowerNameLabel_1" class="font-medium text-gray-700 align-top"></td>
-                  <td><input type="text" id="flowerName_1" name="flowerName_1"></td>
-                </tr>
-                <tr>
-                  <td id="colorLabel_1" class="font-medium text-gray-700 align-top"></td>
-                  <td><input type="text" id="color_1" name="color_1"></td>
-                </tr>
-                <tr>
-                  <td id="quantityLabel_1" class="font-medium text-gray-700 align-top"></td>
-                  <td><input type="text" id="quantity_1" name="quantity_1"></td>
-                </tr>
-                <tr>
-                  <td id="approxMaterialLabel_1" class="font-medium text-gray-700 align-top"></td>
-                  <td><input type="text" id="approxMaterial_1" name="approxMaterial_1"></td>
-                </tr>
-                <tr>
-                  <td id="sizeNotesLabel_1" class="font-medium text-gray-700 align-top"></td>
-                  <td><input type="text" id="sizeNotes_1" name="sizeNotes_1"></td>
-                </tr>
-                // --- Flower Material Dynamic Add ---
-let flowerMaterialCount = 2; // Start with 2 sets
-
-function createFlowerMaterialRow(idx, lang) {
-  const t = translations[lang];
-  return `
-    <tr>
-      <td id="flowerNameLabel_${idx}" class="font-medium text-gray-700 align-top">${t.flowerNameLabel}</td>
-      <td><input type="text" id="flowerName_${idx}" name="flowerName_${idx}"></td>
-    </tr>
-    <tr>
-      <td id="colorLabel_${idx}" class="font-medium text-gray-700 align-top">${t.colorLabel}</td>
-      <td><input type="text" id="color_${idx}" name="color_${idx}"></td>
-    </tr>
-    <tr>
-      <td id="quantityLabel_${idx}" class="font-medium text-gray-700 align-top">${t.quantityLabel}</td>
-      <td><input type="text" id="quantity_${idx}" name="quantity_${idx}"></td>
-    </tr>
-    <tr>
-      <td id="approxMaterialLabel_${idx}" class="font-medium text-gray-700 align-top">${t.approxMaterialLabel}</td>
-      <td><input type="text" id="approxMaterial_${idx}" name="approxMaterial_${idx}"></td>
-    </tr>
-    <tr>
-      <td id="sizeNotesLabel_${idx}" class="font-medium text-gray-700 align-top">${t.sizeNotesLabel}</td>
-      <td><input type="text" id="sizeNotes_${idx}" name="sizeNotes_${idx}"></td>
-    </tr>
-  `;
-}
-
-function renderFlowerMaterials(lang) {
-  const tbody = document.getElementById('flowerMaterialTbody');
-  tbody.innerHTML = '';
-  for (let i = 0; i < flowerMaterialCount; i++) {
-    tbody.innerHTML += createFlowerMaterialRow(i, lang);
-  }
-}
-
-document.getElementById('addFlowerBtn').addEventListener('click', function() {
-  flowerMaterialCount++;
-  renderFlowerMaterials(currentLang);
-});
-
-// --- Language switching support for dynamic rows ---
-let currentLang = 'ja';
-function setLang(lang) {
-  currentLang = lang;
-  // ... (your existing setLang code for other fields)
-  renderFlowerMaterials(lang);
-  // Update add button label
-  document.getElementById('addFlowerBtnLabel').textContent =
-    {ja:'花材を追加',en:'Add Flower',zh:'添加花材',ko:'꽃 추가'}[lang] || 'Add Flower';
-  // ... (rest of your setLang code)
-}
-
-// ... (rest of your script)
+              <tbody id="flowerMaterialTbody">
+                <!-- Flower material sets will be rendered here -->
               </tbody>
             </table>
+            <div class="flex justify-end mt-2">
+              <button type="button" id="addFlowerBtn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
+                ＋ <span id="addFlowerBtnLabel">花材を追加</span>
+              </button>
+            </div>
           </div>
         </div>
         <!-- スケッチ/参考画像 -->
@@ -256,6 +167,7 @@ function setLang(lang) {
         depthLabel: "D:",
         heightLabel: "H:",
         scheduleLabel: "スケジュール",
+        timeLabel: "時間",
         flowerOrderDetailsSection: "花材注文詳細",
         tableHeaderItem: "項目",
         tableHeaderDetail: "詳細記入欄",
@@ -266,6 +178,7 @@ function setLang(lang) {
         sizeNotesLabel: "サイズ備考",
         sketchUploadLabel: "スケッチ / 参考画像のアップロード",
         submitButton: "送信",
+        addFlower: "花材を追加",
         footerText: "※未記入欄や添付ファイルがなくても送信できます。"
       },
       en: {
@@ -288,6 +201,7 @@ function setLang(lang) {
         depthLabel: "D:",
         heightLabel: "H:",
         scheduleLabel: "Schedule",
+        timeLabel: "Time",
         flowerOrderDetailsSection: "Flower Order Details",
         tableHeaderItem: "Item",
         tableHeaderDetail: "Details",
@@ -298,6 +212,7 @@ function setLang(lang) {
         sizeNotesLabel: "Size/Notes",
         sketchUploadLabel: "Upload Sketch / Reference Images",
         submitButton: "Submit",
+        addFlower: "Add Flower",
         footerText: "You can submit even if some fields are blank or no file is attached."
       },
       zh: {
@@ -320,6 +235,7 @@ function setLang(lang) {
         depthLabel: "深:",
         heightLabel: "高:",
         scheduleLabel: "日程",
+        timeLabel: "时间",
         flowerOrderDetailsSection: "花材订购详情",
         tableHeaderItem: "项目",
         tableHeaderDetail: "详细信息",
@@ -330,6 +246,7 @@ function setLang(lang) {
         sizeNotesLabel: "尺寸/备注",
         sketchUploadLabel: "上传草图 / 参考图片",
         submitButton: "提交",
+        addFlower: "添加花材",
         footerText: "即使有未填写的项目或未附加文件也可以提交。"
       },
       ko: {
@@ -352,6 +269,7 @@ function setLang(lang) {
         depthLabel: "세로:",
         heightLabel: "높이:",
         scheduleLabel: "일정",
+        timeLabel: "시간",
         flowerOrderDetailsSection: "화재 주문 상세",
         tableHeaderItem: "항목",
         tableHeaderDetail: "상세 기입란",
@@ -362,11 +280,67 @@ function setLang(lang) {
         sizeNotesLabel: "사이즈 비고",
         sketchUploadLabel: "스케치 / 참고 이미지 업로드",
         submitButton: "제출",
+        addFlower: "꽃 추가",
         footerText: "미기입란이나 첨부파일이 없어도 제출할 수 있습니다."
       }
     };
 
+    let flowerMaterialCount = 2;
+    let currentLang = 'ja';
+
+    function createFlowerMaterialRow(idx, t) {
+      return `
+        <tr>
+          <td id="flowerNameLabel_${idx}" class="font-medium text-gray-700 align-top">${t.flowerNameLabel}</td>
+          <td><input type="text" id="flowerName_${idx}" name="flowerName_${idx}"></td>
+        </tr>
+        <tr>
+          <td id="colorLabel_${idx}" class="font-medium text-gray-700 align-top">${t.colorLabel}</td>
+          <td><input type="text" id="color_${idx}" name="color_${idx}"></td>
+        </tr>
+        <tr>
+          <td id="quantityLabel_${idx}" class="font-medium text-gray-700 align-top">${t.quantityLabel}</td>
+          <td><input type="text" id="quantity_${idx}" name="quantity_${idx}"></td>
+        </tr>
+        <tr>
+          <td id="approxMaterialLabel_${idx}" class="font-medium text-gray-700 align-top">${t.approxMaterialLabel}</td>
+          <td><input type="text" id="approxMaterial_${idx}" name="approxMaterial_${idx}"></td>
+        </tr>
+        <tr>
+          <td id="sizeNotesLabel_${idx}" class="font-medium text-gray-700 align-top">${t.sizeNotesLabel}</td>
+          <td><input type="text" id="sizeNotes_${idx}" name="sizeNotes_${idx}"></td>
+        </tr>
+      `;
+    }
+
+    function renderFlowerMaterials(lang) {
+      const t = translations[lang];
+      const tbody = document.getElementById('flowerMaterialTbody');
+      tbody.innerHTML = '';
+      for (let i = 0; i < flowerMaterialCount; i++) {
+        tbody.innerHTML += createFlowerMaterialRow(i, t);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('addFlowerBtn').addEventListener('click', function() {
+        flowerMaterialCount++;
+        renderFlowerMaterials(currentLang);
+      });
+
+      document.querySelectorAll('.lang-button').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.lang-button').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          setLang(this.dataset.lang);
+        });
+      });
+
+      setLang('ja');
+    });
+
     function setLang(lang) {
+      currentLang = lang;
       const t = translations[lang];
       document.getElementById('mainTitle').textContent = t.mainTitle;
       document.getElementById('mainSubtitle').textContent = t.mainSubtitle;
@@ -387,32 +361,16 @@ function setLang(lang) {
       document.getElementById('depthLabel').textContent = t.depthLabel;
       document.getElementById('heightLabel').textContent = t.heightLabel;
       document.getElementById('scheduleLabel').textContent = t.scheduleLabel;
+      document.getElementById('timeLabel').textContent = t.timeLabel;
       document.getElementById('flowerOrderDetailsSection').textContent = t.flowerOrderDetailsSection;
       document.getElementById('tableHeaderItem').textContent = t.tableHeaderItem;
       document.getElementById('tableHeaderDetail').textContent = t.tableHeaderDetail;
-      document.getElementById('flowerNameLabel_0').textContent = t.flowerNameLabel;
-      document.getElementById('colorLabel_0').textContent = t.colorLabel;
-      document.getElementById('quantityLabel_0').textContent = t.quantityLabel;
-      document.getElementById('approxMaterialLabel_0').textContent = t.approxMaterialLabel;
-      document.getElementById('sizeNotesLabel_0').textContent = t.sizeNotesLabel;
-      document.getElementById('flowerNameLabel_1').textContent = t.flowerNameLabel;
-      document.getElementById('colorLabel_1').textContent = t.colorLabel;
-      document.getElementById('quantityLabel_1').textContent = t.quantityLabel;
-      document.getElementById('approxMaterialLabel_1').textContent = t.approxMaterialLabel;
-      document.getElementById('sizeNotesLabel_1').textContent = t.sizeNotesLabel;
       document.getElementById('sketchUploadLabel').textContent = t.sketchUploadLabel;
       document.getElementById('submitButton').querySelector('span').textContent = t.submitButton;
+      document.getElementById('addFlowerBtnLabel').textContent = t.addFlower;
       document.getElementById('footerText').textContent = t.footerText;
+      renderFlowerMaterials(lang);
     }
-
-    document.querySelectorAll('.lang-button').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.lang-button').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        setLang(this.dataset.lang);
-      });
-    });
-    setLang('ja');
   </script>
 </body>
 </html>
